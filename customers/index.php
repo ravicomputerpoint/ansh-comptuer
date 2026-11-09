@@ -3,6 +3,7 @@
     $page_title = "Customers";
     include('../includes/header.php'); 
     include('../db_config.php');
+    $customers = mysqli_query($conn, "select * from customers");
 ?>
 <a href="create.php" class="btn btn-primary">
     <i class="bi bi-pencil-fill me-2"></i>Create new customer
@@ -15,6 +16,7 @@
 <table class="table table-bordered my-3" id="table">
     <thead>
         <tr class="text-center">
+            <th>Date</th>
             <th>Name</th>
             <th>Mobile No.</th>
             <th>Address</th>
@@ -24,9 +26,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php
-            $customers = mysqli_query($conn, "select * from customers");
-        ?>
+
         <?php while($customer = mysqli_fetch_assoc($customers)): ?>
             <tr>
                 <td><?php echo $customer['name'] ?></td>

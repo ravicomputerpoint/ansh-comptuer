@@ -87,6 +87,11 @@
     <!-- Datatables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/v/dt/dt-3.1.5/datatables.min.css">
     <script src="https://cdn.datatables.net/v/dt/dt-3.1.5/datatables.min.js"></script>
+
+    <!-- Select 2 Libraries -->
+     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/css/select2.min.css" rel="stylesheet"/>
+     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0/dist/js/select2.min.js"></script>
   </head>
   <!--end::Head-->
   <!--begin::Body-->
