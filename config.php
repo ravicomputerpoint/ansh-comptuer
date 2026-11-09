@@ -1,4 +1,4 @@
 <?php
-define('BASE_URL', '/ansh2/');
+define('BASE_URL', '/ansh-comptuer/');
 
 ?>

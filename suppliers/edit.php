@@ -1,5 +1,5 @@
 <?php
-    $page_title = "Create new supplier";
+    $page_title = "Edit supplier";
     include('../includes/header.php');
     include('../db_config.php');
     $id = $_GET['id'];
