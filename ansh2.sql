@@ -7,7 +7,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2026 at 06:17 PM
+-- Generation Time: Nov 09, 2026 at 06:23 PM
 -- Server version: 11.4.10-MariaDB-log
 -- PHP Version: 8.5.5
 
@@ -48,6 +48,17 @@ INSERT INTO `customers` (`id`, `name`, `mobile_no`, `address`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `items`
+--
+
+CREATE TABLE `items` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `suppliers`
 --
 
@@ -79,6 +90,12 @@ ALTER TABLE `customers`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `suppliers`
 --
 ALTER TABLE `suppliers`
@@ -93,6 +110,12 @@ ALTER TABLE `suppliers`
 --
 ALTER TABLE `customers`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
