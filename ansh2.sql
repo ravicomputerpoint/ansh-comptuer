@@ -1,15 +1,11 @@
--- XAMPP-Lite
--- version 8.5.5
--- https://xampplite.sf.net/
---
 -- phpMyAdmin SQL Dump
--- version 5.2.3
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2026 at 07:24 PM
--- Server version: 11.4.10-MariaDB-log
--- PHP Version: 8.5.5
+-- Generation Time: Nov 10, 2026 at 08:44 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -43,7 +39,8 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `mobile_no`, `address`) VALUES
-(2, 'Ravi', '1122334455', 'rav@gmail.com');
+(2, 'Ravi', '1122334455', 'rav@gmail.com'),
+(3, 'Sonu', '1122334455', 'Madhuban');
 
 -- --------------------------------------------------------
 
@@ -84,7 +81,7 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` (`id`, `date`, `invoice_no`, `supplier_id`, `total_amount`, `created_at`) VALUES
-(4, '2026-11-09', '001', 11, 600.00, '2026-11-09 18:21:52');
+(5, '2026-11-10', 'fd', 10, 1464.00, '2026-11-10 07:12:37');
 
 -- --------------------------------------------------------
 
@@ -106,7 +103,54 @@ CREATE TABLE `purchase_items` (
 --
 
 INSERT INTO `purchase_items` (`id`, `purchase_id`, `item_id`, `quantity`, `rate`, `total`) VALUES
-(8, 4, 2, 1.000, 600.00, 600.00);
+(9, 5, 3, 3.000, 488.00, 1464.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales`
+--
+
+CREATE TABLE `sales` (
+  `id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `invoice_no` varchar(100) DEFAULT NULL,
+  `customer_id` int(11) NOT NULL,
+  `total_amount` decimal(14,2) NOT NULL DEFAULT 0.00,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sales`
+--
+
+INSERT INTO `sales` (`id`, `date`, `invoice_no`, `customer_id`, `total_amount`, `created_at`) VALUES
+(3, '2026-11-10', '1', 2, 3000.00, '2026-11-10 07:36:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_items`
+--
+
+CREATE TABLE `sales_items` (
+  `id` int(11) NOT NULL,
+  `sales_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `quantity` decimal(12,3) NOT NULL,
+  `rate` decimal(12,2) NOT NULL,
+  `total` decimal(14,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sales_items`
+--
+
+INSERT INTO `sales_items` (`id`, `sales_id`, `item_id`, `quantity`, `rate`, `total`) VALUES
+(10, 3, 2, 1.000, 1000.00, 1000.00),
+(11, 3, 3, 2.000, 1000.00, 2000.00),
+(12, 4, 2, 1.000, 199.00, 199.00),
+(13, 4, 3, 1.000, 199.00, 199.00);
 
 -- --------------------------------------------------------
 
@@ -164,6 +208,22 @@ ALTER TABLE `purchase_items`
   ADD KEY `item_id` (`item_id`);
 
 --
+-- Indexes for table `sales`
+--
+ALTER TABLE `sales`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `supplier_id` (`customer_id`),
+  ADD KEY `date` (`date`);
+
+--
+-- Indexes for table `sales_items`
+--
+ALTER TABLE `sales_items`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `purchase_id` (`sales_id`),
+  ADD KEY `item_id` (`item_id`);
+
+--
 -- Indexes for table `suppliers`
 --
 ALTER TABLE `suppliers`
@@ -177,7 +237,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `items`
@@ -189,13 +249,25 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `purchase_items`
 --
 ALTER TABLE `purchase_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `sales`
+--
+ALTER TABLE `sales`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `sales_items`
+--
+ALTER TABLE `sales_items`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `suppliers`

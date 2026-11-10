@@ -16,7 +16,6 @@
 <table class="table table-bordered my-3" id="table">
     <thead>
         <tr class="text-center">
-            <th>Date</th>
             <th>Name</th>
             <th>Mobile No.</th>
             <th>Address</th>
